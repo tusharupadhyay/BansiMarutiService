@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+	<definition name="common" template="/WEB-INF/layouts/classic.jsp">
+		<put-attribute name="header" value="/WEB-INF/layouts/header.jsp" />		
+		<put-attribute name="footer" value="/WEB-INF/layouts/footer.jsp" />
+	</definition>
+	
+	<definition name="index" extends="common">
+		<put-attribute name="title" value="Bansi Maruti Service" />
+		<put-attribute name="sidebar" value="/WEB-INF/layouts/sidebar.jsp" />
+		<put-attribute name="body" value="/WEB-INF/jsp/index.jsp" />		
+	</definition>
+	
+	<definition name="customer" extends="common">
+		<put-attribute name="title" value="Customer Service" />
+		<put-attribute name="sidebar" value="/WEB-INF/jsp/customer/customer_sidebar.jsp" />
+		<put-attribute name="body" value="/WEB-INF/jsp/customer/customer.jsp" />			
+	</definition>
+	
+	<definition name="add_customer" extends="common">
+		<put-attribute name="title" value="Add Customer" />
+		<put-attribute name="sidebar" value="/WEB-INF/jsp/customer/customer_sidebar.jsp" />
+		<put-attribute name="body" value="/WEB-INF/jsp/customer/customer_add.jsp" />		
+	</definition>
+	
+	<definition name="customers_show" extends="common">
+		<put-attribute name="title" value="Show Customer" />
+		<put-attribute name="sidebar" value="/WEB-INF/jsp/customer/customer_sidebar.jsp" />
+		<put-attribute name="body" value="/WEB-INF/jsp/customer/show_all.jsp" />		
+	</definition>
+	
+	<definition name="customers_search" extends="common">
+		<put-attribute name="title" value="Search Customer" />
+		<put-attribute name="sidebar" value="/WEB-INF/jsp/customer/customer_sidebar.jsp" />
+		<put-attribute name="body" value="/WEB-INF/jsp/customer/search_by.jsp" />		
+	</definition>
+	
+</tiles-definitions>
