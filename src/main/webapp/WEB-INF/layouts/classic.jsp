@@ -1,4 +1,4 @@
-\<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
 <%@ include file="taglibs.jsp" %>
@@ -11,7 +11,11 @@
 <script type="text/javascript"
 	src="<c:url value="/resources/scripts/jquery-1.11.1.min.js" />"></script>
 <script type="text/javascript"
+	src="<c:url value="/resources/scripts/jquery.validate.js" />"></script>	
+<script type="text/javascript"
 	src="<c:url value="/resources/scripts/bootstrap.js" />"></script>
+<script type="text/javascript"
+	src="<c:url value="/resources/scripts/bootstrap-datepicker.min.js" />"></script>
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/bootstrap.min.css" />">
 <link rel="stylesheet"
@@ -22,18 +26,7 @@
 	href="<c:url value="/resources/css/sticky-footer.css" />">
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/font-awesome.min.css" />">	
-<script type="text/javascript"
-	src="<c:url value="/resources/scripts/jquery.dataTables.min.js" />"></script>
-<script type="text/javascript"
-	src="<c:url value="/resources/scripts/dataTables.responsive.min.js" />"></script>
-<script type="text/javascript"
-	src="<c:url value="/resources/scripts/dataTables.bootstrap.js" />"></script>
-<script type="text/javascript"
-	src="<c:url value="/resources/scripts/bootstrap-datepicker.min.js" />"></script>			
-	
-<link rel="stylesheet"
-	href="<c:url value="/resources/css/dataTables.bootstrap.css" />">	
-				
+
 
 <title><tiles:getAsString name="title" /></title>
 

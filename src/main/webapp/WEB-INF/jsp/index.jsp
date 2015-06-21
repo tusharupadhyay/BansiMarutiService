@@ -23,7 +23,7 @@
 					</div>
 				</div>
 			</div>
-			<a href='<spring:url value="/service/customer" />'>
+			<a href='<spring:url value="/service/customer/searchBy" />'>
 				<div class="panel-footer">
 					<span class="pull-left">View Details</span> <span
 						class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>

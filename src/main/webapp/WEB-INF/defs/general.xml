@@ -32,10 +32,18 @@
 		<put-attribute name="body" value="/WEB-INF/jsp/customer/show_all.jsp" />		
 	</definition>
 	
+	<definition name="customer_update" extends="common">
+		<put-attribute name="title" value="Update Customer" />
+		<put-attribute name="sidebar" value="/WEB-INF/jsp/customer/customer_sidebar.jsp" />
+		<put-attribute name="body" value="/WEB-INF/jsp/customer/customer_update.jsp" />		
+	</definition>
+	
 	<definition name="customers_search" extends="common">
 		<put-attribute name="title" value="Search Customer" />
 		<put-attribute name="sidebar" value="/WEB-INF/jsp/customer/customer_sidebar.jsp" />
 		<put-attribute name="body" value="/WEB-INF/jsp/customer/search_by.jsp" />		
 	</definition>
+	
+	
 	
 </tiles-definitions>

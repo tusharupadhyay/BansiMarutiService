@@ -75,7 +75,8 @@ public class InitDBService {
 		customer.setAddress_line2("Line 2");
 		customer.setCity("Jammu");
 		customer.setSex("Male");
-		customer.setState("J & K");
+		customer.setState("Jammu And Kashmir");
+		customer.setDistrict("Samba");
 		customer.setDrivingLicense("12345675");
 		customer.setEmailId("spatayar@gmail.com");
 		customer.setVehicle("AUDI");

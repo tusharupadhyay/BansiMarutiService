@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bmsm.common.entities.Customer;
@@ -32,15 +34,22 @@ public class CustomerController {
 	}
 	
 	@RequestMapping("/service/customer")
-	public String getCustomerPage(Model model){
-		model.addAttribute("customers", customerService.findAll());
+	public String getCustomerPage(Model model){		
 		model.addAttribute("page", "customer");
 		return "customer";
 	}
 	
 	@RequestMapping("/service/customer/showAllCustomer")
-	public String getAllCustomers(Model model){
-		model.addAttribute("customers", customerService.findAll());
+	public String getAllCustomers(Model model) throws JsonGenerationException, JsonMappingException, IOException{
+		
+		List<Customer> list = customerService.findAll();
+		if(list != null) {
+			ObjectMapper mapper = new ObjectMapper();		
+			model.addAttribute("customers",  mapper.writeValueAsString(list));
+		}
+		else {
+			model.addAttribute("error", "error");
+		}
 		model.addAttribute("page", "customer_show");
 		return "customers_show";
 	}
@@ -59,36 +68,49 @@ public class CustomerController {
 		return "redirect:/service/customer/addCustomer?success=true";
 	}
 	
-	@RequestMapping("/service/customer/searchByFirstName")
-	public String searchByFirstName(Model model){
-		model.addAttribute("page", "customers_search_first");	
-		model.addAttribute("seachByParam", "First Name..");
+	@RequestMapping("/service/customer/searchBy")
+	public String getSearchPage(Model model){
+		model.addAttribute("page", "customers_search");	
 		return "customers_search";
 	}
 	
-	@RequestMapping("/service/customer/searchByLastName")
-	public String searchByLastName(Model model){
-		model.addAttribute("page", "customers_search_last");	
-		model.addAttribute("seachByParam", "Last Name..");
-		return "customers_search";
-	}
-	
-	@RequestMapping("/service/customer/searchByDL")
-	public String searchByDL(Model model){
-		model.addAttribute("page", "customers_search_DL");	
-		model.addAttribute("seachByParam", "Driving License..");
-		return "customers_search";
-	}
-	
-	@RequestMapping(value="/service/customer/searchByFirstName/{firstName}", method = RequestMethod.GET)
-	public @ResponseBody String getShopInJSON(@PathVariable String firstName) throws JsonGenerationException, JsonMappingException, IOException {		
-		List<Customer> customers = customerService.findbyFirstName(firstName);
-		for(Customer customer : customers) {
-			System.out.println(customer.toString());
+	@RequestMapping(value="/service/customer/searchBy/{searchBy}/{searchParam}", method = RequestMethod.POST)
+	public @ResponseBody String getCustomersSearched(@PathVariable("searchBy") String searchBy, @PathVariable("searchParam") String searchParam) throws JsonGenerationException, JsonMappingException, IOException {		
+		List<Customer> customers = customerService.findBy(searchBy, searchParam);
+		if(customers != null) {
+			ObjectMapper mapper = new ObjectMapper();		
+			return mapper.writeValueAsString(customers);
 		}
-		ObjectMapper mapper = new ObjectMapper();		
-		return mapper.writeValueAsString(customers);
+		else {
+			return null;
+		}
 	}
 	
+	@RequestMapping(value = "/service/customer/updateCustomer/{customerId}")
+	public String getUpdateCustomerPage(@PathVariable String customerId, Model model) throws JsonGenerationException, JsonMappingException, IOException {		
+			
+		Customer customer = customerService.findOne(Integer.parseInt(customerId.trim()));		
+		if(customer != null) {
+			ObjectMapper mapper = new ObjectMapper();			
+			model.addAttribute("customer", mapper.writeValueAsString(customer));
+		}
+		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+		model.addAttribute("date_format", format.format(new Date()));	
+		return "customer_update";
+	}	
+	
+	@RequestMapping(value = "/service/customer/updateCustomer/update", method = RequestMethod.POST)	
+	public @ResponseBody String updateCustomer(@RequestParam String updateData ) throws JsonParseException, JsonMappingException, IOException {
+		 ObjectMapper mapper = new ObjectMapper();		
+		 Customer customer = mapper.readValue(updateData, Customer.class);		
+		 customerService.update(customer);
+		 return "Success";
+	}
+	
+	@RequestMapping(value = "/service/customer/remove/{customerId}", method = RequestMethod.POST)	
+	public @ResponseBody String removeCustomer(@PathVariable String customerId) {
+		customerService.remove(Integer.parseInt(customerId.trim()));
+		return "success";
+	}
 	
 }
