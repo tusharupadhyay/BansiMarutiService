@@ -194,12 +194,12 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
-				
+
 		<dependency>
-        <groupId>org.springframework.data</groupId>
-        <artifactId>spring-data-jpa</artifactId>
-        <version>1.8.0.RELEASE</version>
-    </dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-jpa</artifactId>
+			<version>1.8.0.RELEASE</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.hsqldb</groupId>
@@ -221,11 +221,24 @@
 			<artifactId>jackson-mapper-asl</artifactId>
 			<version>1.9.13</version>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency>
+
+
 	</dependencies>
 
 	<properties>
 		<org.springframework.version>4.1.6.RELEASE</org.springframework.version>
 		<apache.tiles>3.0.5</apache.tiles>
+		<spring.security.version>4.0.1.RELEASE</spring.security.version>
 	</properties>
 
 

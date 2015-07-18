@@ -16,6 +16,16 @@
 			endDate : dateFormat
 		});
 		
+		// Adding this to send csrf token with every ajax call	
+		$(function() {
+				var token = $("meta[name='_csrf']").attr("content");
+				var header = $("meta[name='_csrf_header']").attr("content");
+				$(document).ajaxSend(function(e, xhr, options) {
+					xhr.setRequestHeader(header, token);
+				});
+			});
+		
+		
 		initialize(customer);
 	});
 	

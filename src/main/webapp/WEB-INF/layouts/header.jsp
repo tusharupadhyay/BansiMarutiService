@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="taglibs.jsp" %>
+<%@ include file="taglibs.jsp"%>
+
+<script>
+		function formSubmit() {
+			document.getElementById("logoutForm").submit();
+		}
+</script>
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
 	<div class="container-fluid">
@@ -14,8 +20,23 @@
 			</button>
 			<a class="navbar-brand" href="#">Bansi Maruti Service</a>
 		</div>
+
+		<c:url value="/j_spring_security_logout" var="logoutUrl" />
+
+		<!-- csrt for log out-->
+		<form action="${logoutUrl}" method="post" id="logoutForm">
+			<input type="hidden" name="${_csrf.parameterName}"
+				value="${_csrf.token}" />
+		</form>
+
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
+				<c:if test="${pageContext.request.userPrincipal.name == null}">
+					<li><a href="<spring:url value="/login" />">Login</a></li>				
+				</c:if>								
+				<c:if test="${pageContext.request.userPrincipal.name != null}">
+					<li><a href="javascript:formSubmit()">Logout</a></li>
+				</c:if>				
 				<li><a href="#">Dashboard</a></li>
 				<li><a href="#">Settings</a></li>
 				<li><a href="#">Profile</a></li>

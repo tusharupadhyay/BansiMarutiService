@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 @Entity
@@ -14,11 +15,12 @@ public class User {
 	@GeneratedValue
 	private Integer id;	
 	
-	private String userName;	
+	private String name;	
 	
 	private String password;
 	
 	@ManyToMany
+	@JoinTable
 	private List<Role> roles;
 	
 	public Integer getId() {
@@ -27,12 +29,7 @@ public class User {
 	public void setId(Integer id) {
 		this.id = id;
 	}	
-	public String getUserName() {
-		return userName;
-	}
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}	
+		
 	public String getPassword() {
 		return password;
 	}
@@ -44,5 +41,11 @@ public class User {
 	}
 	public void setRoles(List<Role> roles) {
 		this.roles = roles;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}	
 }
