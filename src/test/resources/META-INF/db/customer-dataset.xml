@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+
+	<Customer ID="100" FIRST_NAME="Sahil" MIDDLE_NAME="Bansi"
+		LAST_NAME="Patayar"></Customer>
+	<Customer ID="200" FIRST_NAME="Rahil" MIDDLE_NAME="Bansi"
+		LAST_NAME="Patayar"></Customer>
+		
+</dataset>

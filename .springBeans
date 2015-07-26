@@ -9,6 +9,9 @@
 	<configs>
 		<config>src/main/webapp/WEB-INF/dispatcher-servlet.xml</config>
 		<config>src/main/webapp/WEB-INF/applicationContext.xml</config>
+		<config>src/main/webapp/WEB-INF/security.xml</config>
+		<config>src/test/resources/META-INF/dbUnit-context.xml</config>
+		<config>src/test/resources/META-INF/hibernate-persistence.xml</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>

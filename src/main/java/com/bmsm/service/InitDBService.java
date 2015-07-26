@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 import com.bmsm.common.entities.Customer;
 import com.bmsm.common.entities.user.Role;
 import com.bmsm.common.entities.user.User;
-import com.bmsm.jpa.repositories.AddressRepository;
 import com.bmsm.jpa.repositories.CustomerRepository;
 import com.bmsm.jpa.repositories.RoleRepository;
 import com.bmsm.jpa.repositories.UserRepository;
@@ -29,10 +28,7 @@ public class InitDBService {
 	RoleRepository roleRepository;
 	
 	@Autowired
-	CustomerRepository customerRepository;
-	
-	@Autowired
-	AddressRepository addressRepository;
+	CustomerRepository customerRepository;	
 	
 	@PostConstruct
 	public void init() {
@@ -99,11 +95,7 @@ public class InitDBService {
 		/*addresses.add(address1);
 		addresses.add(address2);*/
 		customerRepository.save(customer);
-		customerRepository.save(customer2);
-		
-		
-		
-		
+		customerRepository.save(customer2);		
 		
 	}
 

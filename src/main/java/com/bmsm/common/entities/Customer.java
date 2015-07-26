@@ -1,5 +1,6 @@
 package com.bmsm.common.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -9,22 +10,52 @@ public class Customer {
 
 	@Id
 	@GeneratedValue
+	@Column(name="ID")
 	private Integer id;
 	
+	@Column(name="FIRST_NAME")
 	private String firstName;
+	
+	@Column(name="MIDDLE_NAME")
 	private String middleName;
+	
+	@Column(name="LAST_NAME")
 	private String lastName;
+	
+	@Column(name="DRIVING_LICENSE")
 	private String drivingLicense;
+	
+	@Column(name="VEHICLE")
 	private String vehicle;
+	
+	@Column(name="DATE_OF_BIRTH")	
 	private String dateOfBirth;
+	
+	@Column(name="EMAIL_ID")
 	private String emailId;
+	
+	@Column(name="GENDER")
 	private String sex;
+	
+	@Column(name="ADDRESS_LINE_1")
 	private String address_line1;
+	
+	@Column(name="ADDRESS_LINE_2")
 	private String address_line2;
+	
+	@Column(name="CITY")
 	private String city;
+	
+	@Column(name="DISTRICT")
 	private String district;
+	
+	@Column(name="STATE")
 	private String state;
+	
+	@Column(name="MOBILE_NUMBER")
 	private String mobileNumber;
+	
+	@Column(name="HOME_NUMBER")
 	private String homeNumber;
 	
 	//TODO
