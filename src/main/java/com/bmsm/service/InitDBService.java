@@ -7,14 +7,23 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 
+import org.joda.time.LocalDate;
+import org.joda.time.LocalTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.bmsm.common.entities.Attendance;
 import com.bmsm.common.entities.Customer;
+import com.bmsm.common.entities.Employee;
 import com.bmsm.common.entities.user.Role;
 import com.bmsm.common.entities.user.User;
+import com.bmsm.common.util.AttendenceStatus;
+import com.bmsm.common.util.Day;
+import com.bmsm.common.util.EmployeeStatus;
+import com.bmsm.jpa.repositories.AttendanceRepository;
 import com.bmsm.jpa.repositories.CustomerRepository;
+import com.bmsm.jpa.repositories.EmployeeRepository;
 import com.bmsm.jpa.repositories.RoleRepository;
 import com.bmsm.jpa.repositories.UserRepository;
 
@@ -22,13 +31,19 @@ import com.bmsm.jpa.repositories.UserRepository;
 public class InitDBService {
 	
 	@Autowired
-	UserRepository userRepository;
+	private UserRepository userRepository;
 	
 	@Autowired
-	RoleRepository roleRepository;
+	private RoleRepository roleRepository;
 	
 	@Autowired
-	CustomerRepository customerRepository;	
+	private CustomerRepository customerRepository;	
+	
+	@Autowired
+	private EmployeeRepository employeeRepository;
+	
+	@Autowired
+	private AttendanceRepository attendanceRepository;
 	
 	@PostConstruct
 	public void init() {
@@ -86,17 +101,70 @@ public class InitDBService {
 		customer2.setEmailId("rahil@gmail.com");
 		customer2.setVehicle("Swift");
 		
-		customer2.setDateOfBirth(format.format(new Date()));
-
-		
-		
-		
-		/*List<Address> addresses = new ArrayList<Address>();*/
-		/*addresses.add(address1);
-		addresses.add(address2);*/
+		customer2.setDateOfBirth(format.format(new Date()));	
+				
 		customerRepository.save(customer);
 		customerRepository.save(customer2);		
 		
+		// Creating employee
+		Employee emp = createEmployee();
+		employeeRepository.save(emp);
+		
+		Employee emp1 = employeeRepository.findAll().get(0);
+		
+		// creating attendance instance
+		Attendance att = createAttendanceInstance();
+		att.setEmployee(emp1);
+		attendanceRepository.save(att); 
+		
+		System.out.println(att.toString());
+		System.out.println(att.getEmployee().getStatus().getName());
+		System.out.println(att.getEmployee().getStatus().getValue());
+		System.out.println(EmployeeStatus.findByCode(2));
+		
+	}
+	
+	public Employee createEmployee() {
+		Employee emp = new Employee();
+		
+		emp.setFirstName("Virat");
+		emp.setLastName("Kholi");
+		emp.setCity("Samba");
+		emp.setContactNumber("9419133434");
+		emp.setSalary(15000D);
+		emp.setDesignation("Manager");
+		emp.setDistrict("Delhi");
+		emp.setAddress("Addeess is in here");
+		emp.setEmailId("vKholi@gmail.com");
+		emp.setSex("Male");
+		emp.setStatus(EmployeeStatus.ACTIVE);
+		emp.setState("Jammu and kashmir");
+		LocalDate localDate = new LocalDate();
+		
+		emp.setDateOfBirth(localDate);
+		
+		emp.setStartDate(localDate);		
+		
+		return emp;
+	}
+	
+	public Attendance createAttendanceInstance() {
+		Attendance attnd = new Attendance();
+		
+		attnd.setDay(Day.MONDAY);
+		attnd.setOverTime(false);
+		attnd.setStatus(AttendenceStatus.FULL_DAY);
+		
+		LocalTime localTime = new LocalTime();
+		LocalDate localDate = new LocalDate();
+		
+		attnd.setDate(localDate);
+		attnd.setTimeIn(localTime);
+		attnd.setTimeOut(localTime.plusHours(5));
+		
+		
+		
+		return attnd;
 	}
 
 }

@@ -49,6 +49,18 @@
 		<put-attribute name="body" value="/WEB-INF/jsp/customer/search_by.jsp" />		
 	</definition>
 	
+	<!-- Employee views -->
 	
+	<definition name="employee_search" extends="common">
+		<put-attribute name="title" value="Search Employee" />
+		<put-attribute name="sidebar" value="/WEB-INF/jsp/employee/employee_sidebar.jsp" />
+		<put-attribute name="body" value="/WEB-INF/jsp/employee/searchBy.jsp" />
+	</definition>
+	
+	<definition name="employee_add" extends="common">
+		<put-attribute name="title" value="Add Employee" />
+		<put-attribute name="sidebar" value="/WEB-INF/jsp/employee/employee_sidebar.jsp" />
+		<put-attribute name="body" value="/WEB-INF/jsp/employee/employee_add.jsp" />		
+	</definition>
 	
 </tiles-definitions>

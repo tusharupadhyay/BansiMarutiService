@@ -5,5 +5,7 @@
 		<class>com.bmsm.common.entities.user.User</class>
 		<class>com.bmsm.common.entities.user.Role</class>
 		<class>com.bmsm.common.entities.Address</class>
+		<class>com.bmsm.common.entities.Employee</class>
+		<class>com.bmsm.common.entities.Attendance</class>
 	</persistence-unit>
 </persistence>

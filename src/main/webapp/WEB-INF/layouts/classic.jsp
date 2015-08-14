@@ -19,7 +19,9 @@
 <script type="text/javascript"
 	src="<c:url value="/resources/scripts/bootstrap.js" />"></script>
 <script type="text/javascript"
-	src="<c:url value="/resources/scripts/bootstrap-datepicker.min.js" />"></script>
+	src="<c:url value="/resources/scripts/moment.js" />"></script>
+<script type="text/javascript"
+	src="<c:url value="/resources/scripts/bootstrap-datepicker.min.js" />"></script>	
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/bootstrap.min.css" />">
 <link rel="stylesheet"
@@ -29,8 +31,9 @@
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/sticky-footer.css" />">
 <link rel="stylesheet"
-	href="<c:url value="/resources/css/font-awesome.min.css" />">	
-
+	href="<c:url value="/resources/css/font-awesome.min.css" />">
+<link rel="stylesheet"
+	href="<c:url value="/resources/css/date-picker/bootstrap-datepicker.min.css" />">
 
 <title><tiles:getAsString name="title" /></title>
 

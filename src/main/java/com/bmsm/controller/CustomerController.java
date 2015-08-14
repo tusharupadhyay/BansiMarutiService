@@ -33,6 +33,7 @@ public class CustomerController {
 		return new Customer();
 	}
 	
+	// Return main Customer page
 	@RequestMapping("/service/customer")
 	public String getCustomerPage(Model model){		
 		model.addAttribute("page", "customer");
